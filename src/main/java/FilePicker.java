@@ -5,6 +5,7 @@ import java.io.IOException;
 
 
 public class FilePicker {
+
     public static void main(String []args) throws IOException {
         JFileChooser fc = new JFileChooser();
         int r = fc.showOpenDialog(new JFrame());
@@ -23,7 +24,7 @@ public class FilePicker {
 
 
 
-        Grading grade = new Grading(fileName);
+
 
 
     }

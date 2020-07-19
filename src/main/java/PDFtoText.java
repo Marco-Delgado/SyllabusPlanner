@@ -7,9 +7,9 @@ import org.apache.pdfbox.pdmodel.encryption.AccessPermission;
 import org.apache.pdfbox.text.PDFTextStripper;
 
 public class PDFtoText {
-
     public PDFtoText(File pdfFile, String fileName) throws IOException {
-
+        Text myText = new Text();
+        String text = null;
 
         try (PDDocument document = PDDocument.load(pdfFile)) {
             AccessPermission ap = document.getCurrentAccessPermission();
@@ -20,27 +20,33 @@ public class PDFtoText {
             stripper.setSortByPosition(true);
 
             for (int p=1; p <= document.getNumberOfPages(); ++p) {
-                String text = stripper.getText(document);
+                text = stripper.getText(document);
 
                 String pageStr = String.format("page %d:", p);
 
-                    File sylName = new File(fileName+".txt");
-                    FileWriter mySyl = new FileWriter(fileName+".txt");
-                    mySyl.write(text.trim());
-                    mySyl.close();
-
-
-
-//                System.out.println(pageStr);
-//                for (int i = 0; i < pageStr.length(); ++i) {
-//                    System.out.print("-");
-//                }
-//                System.out.println();
-//                System.out.println(text.trim());
-//                System.out.println();
+                    // -----Code below creates a .txt file-----
+                    //File sylName = new File(fileName+".txt");
+                    //FileWriter mySyl = new FileWriter(fileName+".txt");
+                    //mySyl.write(text.trim());
+                    //mySyl.close();
             }
+            myText.setText(text);
             System.out.println("Finished txt!");
+            Grading grade = new Grading(myText.getText());
         }
-
     }
 }
+
+
+class Text {
+    private String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String newText) {
+        this.text = newText;
+    }
+}
+

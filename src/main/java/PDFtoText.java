@@ -21,10 +21,9 @@ public class PDFtoText {
 
             for (int p=1; p <= document.getNumberOfPages(); ++p) {
                 text = stripper.getText(document);
-
                 String pageStr = String.format("page %d:", p);
 
-                    // -----Code below creates a .txt file-----
+                    // -----Code below creates a .TXT file-----
                     //File sylName = new File(fileName+".txt");
                     //FileWriter mySyl = new FileWriter(fileName+".txt");
                     //mySyl.write(text.trim());
@@ -32,11 +31,12 @@ public class PDFtoText {
             }
             myText.setText(text);
             System.out.println("Finished txt!");
+            //System.out.println(text);
             Grading grade = new Grading(myText.getText());
+            DateSchedule dates = new DateSchedule(myText.getText());
         }
     }
 }
-
 
 class Text {
     private String text;
